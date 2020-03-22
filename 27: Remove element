@@ -1,0 +1,18 @@
+class Solution {
+ public int removeElement(int[] nums, int val) {
+    int result=0;
+    int end = nums.length;
+    for(int i=0;i<end;i++) {
+     if (nums[i] != val) {
+        nums[result] = nums[i];
+         // reduce array size by one
+        result++;
+      } 
+    }    
+     
+    return result;
+ }
+}
+//Logic: result is the size object which stores the non-value elements. If we find a non-val element then we stores those values and increment the result, else we keep continuing the loop
+//Time Complexity - O(n) : Both i and n traverse at most n steps
+//Space complexity - O(1)
