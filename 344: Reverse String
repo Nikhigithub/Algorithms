@@ -1,0 +1,19 @@
+class Solution {
+    public void reverseString(char[] s) {
+     
+        int i=0;
+        int end = s.length;
+        while(i<end){
+         char temp = s[i];
+         s[i] = s[end-1];
+         s[end-1] = temp;
+            i++;
+            end--;
+        }
+        
+    }
+}
+
+//Logic: I am swapping the first element with the last element and incrementing the first element and decrement the last element . So in total we do n/2 swaps
+// Time complexity: O(n) time to perform n/2 swaps
+//Space Complexity : O(1) as we are doing inspace array manipulation 
