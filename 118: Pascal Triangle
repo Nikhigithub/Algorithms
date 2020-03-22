@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+     List<List<Integer>> arr = new ArrayList<List<Integer>>();
+      if(numRows==0){
+        return arr;  
+      }
+        
+     ArrayList arr1= new ArrayList<Integer>();
+     arr1.add(1);
+     arr.add(arr1);
+     if(numRows==1){
+         return arr;
+     }
+     ArrayList arr2= new ArrayList<Integer>();   
+     arr2.add(1);
+     arr2.add(1);
+     arr.add(arr2);   
+    if(numRows==2){   
+     return arr;
+     }
+        
+     for(int i=2;i < numRows; i++){
+      List<Integer> innerarr = new ArrayList<Integer>();
+      List<Integer> prevarr = arr.get(i-1);
+      innerarr.add(1);
+      for(int j=1;j<prevarr.size();j++){
+          innerarr.add(prevarr.get(j-1)+prevarr.get(j));
+      } 
+         innerarr.add(1);
+       arr.add(innerarr);  
+     }   
+     
+     return arr;   
+    }
+}
+
+// Dynamic Programming : As we construct each row using the previous aproach.
+//We check for 0 and 1 conditions and then we proceed futher. We take the previous list and add the j-1 value and j value which will be thevalue for new arraylist(j);
+//Time Complexity: O(numRows Square) as the outer loop runs numRows and the inner loop also runs numRows
+//Space Complexity : O(numRows Square)
