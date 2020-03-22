@@ -1,0 +1,57 @@
+/*class Solution {
+    public int strStr(String haystack, String needle) {
+     int result=-1;
+     //if needle length 0 then we retrun 0 
+     if( needle.length()==0 ){
+         return 0;
+         // if needle length is greater than the haystack length , then return -1
+     }else if(needle.length()>haystack.length()){
+         return -1;
+     }
+     //Tip is we compare Haystack length - needle.length +1 as we dont need to compare the whole of needle length 
+     for(int i=0;i<haystack.length()-needle.length()+1;i++){
+      if(haystack.charAt(i)==needle.charAt(0)){
+          result =i;
+           int k=i;
+           int y=0;
+          while(y<needle.length() && k<haystack.length()){
+              if(haystack.charAt(k)==needle.charAt(y)){
+                  k++;
+                  y++;
+              }else{
+                  break;
+              }
+              
+          }
+          if(y==needle.length()){
+              return result;
+          }
+          }
+      }   
+     
+        
+  return -1;
+    }
+}*/
+
+//Logic is two pointers: Lets compare only the substring which starts from the first character in the needle .  
+//Time Compleity : O((n-L)L) in the worst case where we compare false cases and O(N) is the best case for a single match 
+//Space Complexity : O(1)
+
+class Solution {
+  public int strStr(String haystack, String needle) {
+    int L = needle.length(), n = haystack.length();
+
+    for (int start = 0; start < n - L + 1; ++start) {
+      if (haystack.substring(start, start + L).equals(needle)) {
+        return start;
+      }
+    }
+    return -1;
+  }
+}
+
+//Logic is we take the substring anf then compare with the needle. 
+//Drawback for this is we compare all the substrings of length L with the needle.
+//Time Compleity : O((n-L)L) where L is the length of the needle and N is the length of the haystack. We compute a substring of length L in a loop which was executed N-L times.
+//Space Complexity : O(1)
