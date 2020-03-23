@@ -1,0 +1,45 @@
+/*
+// Employee info
+class Employee {
+    // It's the unique id of each node;
+    // unique id of this employee
+    public int id;
+    // the importance value of this employee
+    public int importance;
+    // the id of direct subordinates
+    public List<Integer> subordinates;
+};
+*/
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+     int result =0;
+    Map<Integer, Employee> hash = new HashMap<Integer, Employee>();
+     for(Employee emp :employees){
+          hash.put(emp.id, emp);
+     }
+     if(hash.containsKey(id)){
+    Employee list = hash.get(id); 
+      result = result + list.importance;
+     List<Integer> subor = new ArrayList<Integer>(); 
+     subor = list.subordinates;
+     for(int k=0;k<subor.size();k++){
+         int value = subor.get(k);
+         Employee correct = hash.get(value);
+        int subvalue  = correct.importance;
+        result = result + subvalue ;
+        List<Integer> subor21 = new ArrayList<Integer>(); 
+     subor21= correct.subordinates;
+        for(int j=0; j<subor21.size();j++)
+        {
+            subor.add(subor21.get(j));
+        }
+     }      
+     }      
+     return result;   
+    }
+    
+}
+
+//Logic: Firstly ading all the ids, employees to a hashmap. Later we access the subordiates employees and sum up the importance . If the subordinates has inner subordinates , then we keep adding them to the list and iterate until the list is empty 
+//Time Complexity : O(k*j) which is the worst time complexity, where k is the size of the subordinates and the j is the size of the inner subordinates
+//Space Complexity : O(n) - as we are using the haspmap to store all the employees and iterate through the subordinates
