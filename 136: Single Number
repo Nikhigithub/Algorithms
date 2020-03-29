@@ -1,0 +1,57 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+     /*  //Timelimit exceeded error as I am sorting the array   
+     int result =0;
+       Arrays.sort(nums);
+        int i=0;
+        while(i<nums.length-1){
+          if(nums[i]== nums[i+1]){  
+              i=i+2;
+             }else{
+              result= nums[i];
+          }  
+        } 
+        if(nums[nums.length-1]!=nums[nums.length-2]){
+          result=  nums[nums.length-1];
+        }
+       return result;
+       */
+        
+        //Solution -2 : I am using haspmap
+        /*HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+        for(int i=0;i<nums.length;i++){
+            if(hash.containsKey(nums[i])){
+                hash.put(nums[i], 2);
+            }else{
+                hash.put(nums[i],1);
+            }
+            }
+        for(Map.Entry map :hash.entrySet()){
+            if((Integer)map.getValue()==1){
+                return (Integer)map.getKey();
+            }
+        }
+        return 0;*/
+      /*  int a = 0;
+    for (int i : nums) {
+      a ^= i;
+    }
+    return a;*/
+            if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        
+        Arrays.sort(nums);
+        int i = 0;
+        while (i < nums.length) {
+            if (i == nums.length - 1 || nums[i] != nums[i+1]) {
+                return nums[i];
+            }
+            i += 2;
+        }
+        return -1;
+    }
+}
