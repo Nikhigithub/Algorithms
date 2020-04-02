@@ -1,0 +1,37 @@
+class Solution {
+    public String countAndSay(int n) {
+     if(n==1){
+         return "1";
+     }else if(n==2){
+         return "11";
+     }
+     String str = "11";
+     String result= "";
+     for(int i=2;i<n;i++){  
+       result = count(str);
+         System.out.println(result);
+       str = result;  
+     }       
+        return result;
+    }
+
+    
+  public String count(String str1){
+   int count =0;
+   StringBuilder str= new StringBuilder();   
+   char prev=str1.charAt(0);   
+   for(int i=0;i<str1.length();i++){
+       if(prev==str1.charAt(i)) {
+           count++;
+       }else{
+           str.append(count).append(prev);
+           prev=str1.charAt(i);
+           count=1;
+       }
+   }
+    str.append(count).append(prev);  
+      
+   return str.toString();   
+  }
+    
+}
