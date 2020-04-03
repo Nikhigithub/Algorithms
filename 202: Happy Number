@@ -1,0 +1,37 @@
+class Solution {
+    public boolean isHappy(int n) {
+     boolean result = false;
+     int inner =0; 
+     if(n==1){
+         return true;
+     }   
+    ArrayList<Integer> arr = new ArrayList<Integer>();  
+        arr.add(n);
+    while(n!=1) { 
+        inner = sumdigit(n);
+       if(inner==1){
+           return true;
+       }  else{
+           if(arr.contains(inner)){
+               return false;
+           }else{
+            arr.add(inner);
+            n =inner;
+       }}
+     }
+        
+     return result;   
+    }
+    
+  public int sumdigit(int n ){
+        int rem =0;
+        int value =0;
+
+      while(n!=0){
+       rem = n%10;
+       value = value + rem*rem;   
+      n = n/10;   
+     }
+    return value;  
+  }  
+}
