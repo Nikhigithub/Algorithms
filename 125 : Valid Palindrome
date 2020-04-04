@@ -1,0 +1,27 @@
+ class Solution {
+    public boolean isPalindrome(String s) {
+     s=s.toUpperCase();
+     if(s.length()==0){
+         return true;
+     }
+       boolean result=true; 
+        StringBuffer str = new StringBuffer();
+      for(int i=0;i<s.length();i++){
+          int value = s.charAt(i);
+          if((value>=65 && value<91)||(value>=48 && value<=57)){
+              str.append(s.charAt(i));
+          }
+      }
+      int len = str.length()-1;  
+        
+      for(int k=0;k<str.length()/2;k++){
+         if(str.charAt(k) == str.charAt(len)){
+             len--;
+         } else{
+             return false;
+         }
+      }
+        
+      return result;    
+    }
+}
