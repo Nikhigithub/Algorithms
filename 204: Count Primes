@@ -1,0 +1,29 @@
+class Solution {
+    public int countPrimes(int n) {
+     int result =0;
+    HashSet<Integer> set = new HashSet<Integer>(); 
+    if(n<=2){
+        return 0;
+    }        
+     set.add(2);   
+    for(int i=3;i<n;i++){
+        boolean value = isprime(i);
+        if(value){
+            set.add(i);
+        }
+    }
+        
+     return set.size();   
+    }
+    
+   public boolean isprime(int num){
+    int number =0;    
+       for(int i=2;i*i<=num;i++){
+        if(num%i==0){
+            return false;
+        }    
+     }
+     return true;  
+   }
+    
+}
