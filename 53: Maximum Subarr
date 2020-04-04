@@ -1,0 +1,21 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        if(nums.length==1){
+            return nums[0];
+        }
+     int[] localmax = new int[nums.length];
+        localmax[nums.length-1]=nums[nums.length-1];
+        
+     for(int i=nums.length-2;i>= 0;i--){
+         localmax[i]= Math.max(localmax[i+1]+nums[i],nums[i] );
+     }
+        int max=Integer.MIN_VALUE;
+      for(int j=0;j<localmax.length;j++){
+          if(localmax[j]>max){
+              max=localmax[j];
+          }
+      }  
+        
+      return max;
+    }
+}
