@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+     ArrayList<List<String>> result = new ArrayList<List<String>>();
+     
+     if(strs.length==0){
+         return null;
+     }   
+     ArrayList<String> arr = new ArrayList<String>();
+     arr.add(strs[0]);
+     result.add(arr);
+     for(int i=1;i<strs.length;i++){
+         boolean flag = true;
+      for(int k=0;k<result.size();k++){
+          String firststr= result.get(k).get(0);
+          char[] chararr = firststr.toCharArray();
+          Arrays.sort(chararr);
+          String str1 = new String(chararr);
+          char[] chararr1 = strs[i].toCharArray();
+          Arrays.sort(chararr1);
+          String str2 = new String(chararr1);
+          if(str1.equals(str2)){
+              result.get(k).add(strs[i]);
+              flag=false;
+          }
+      }
+       if(flag){
+           ArrayList<String> newlist = new ArrayList<String>();
+           newlist.add(strs[i]);
+           result.add(newlist);
+       }  
+         
+     }   
+        
+     return result;   
+    }
+    
+}
