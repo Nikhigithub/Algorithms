@@ -1,0 +1,61 @@
+/*Question :: 
+Given an integer array arr, count element x such that x + 1 is also in arr.
+If there're duplicates in arr, count them seperately.
+
+Input: arr = [1,3,2,3,5,0]
+Output: 3
+Explanation: 0, 1 and 2 are counted cause 1, 2 and 3 are in arr.
+
+Input: arr = [1,1,2,2]
+Output: 2
+Explanation: Two 1s are counted cause 2 is in arr.
+
+Input: arr = [1,1,3,3,5,5,7,7]
+Output: 0
+Explanation: No numbers are counted, cause there's no 2, 4, 6, or 8 in arr.
+
+Input: arr = [1,2,3]
+Output: 2
+Explanation: 1 and 2 are counted cause 2 and 3 are in arr.
+*/
+
+
+//Solution -1 ::
+class Solution {
+    public int countElements(int[] arr) {
+      int result=0;
+      HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();  
+      for(int i=0;i<arr.length;i++){
+        if(hash.containsKey(arr[i])){
+            hash.put(arr[i],(hash.get(arr[i])+1));
+        }else{
+            hash.put(arr[i], 1);
+        }  
+      }
+        ArrayList<Integer> arrlist = new ArrayList<Integer>();
+        
+      for(int k=0;k<arr.length;k++){
+          if(hash.containsKey(arr[k]+1) && !arrlist.contains(arr[k])){
+             arrlist.add(arr[k]);
+             result =result+ hash.get(arr[k]);   
+        }
+      }
+        
+      return result;  
+    }
+}
+
+// Solution-2
+public int countElements(int[] arr) {
+    Set<Integer> hashSet = new HashSet<>();
+    for (int x : arr) {
+        hashSet.add(x);
+    }
+    int count = 0;
+    for (int x : arr) {
+        if (hashSet.contains(x + 1)) {
+            count++;
+        }
+    }
+    return count;
+}
