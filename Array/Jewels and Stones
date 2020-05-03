@@ -21,6 +21,10 @@ class Solution {
         return result;
     }
 }
+Time Complexity: O(J.length + S.length).O(J.length) part comes from creating J. O(S.length) part comes from searching S.
+
+
+
 
 
 Solution -2 :: 
