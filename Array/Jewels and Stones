@@ -1,0 +1,38 @@
+Solution -1 :: 
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+      HashMap<Character, Integer> hash = new HashMap<Character, Integer>();
+      for(int i=0;i<S.length();i++){
+         if(hash.containsKey(S.charAt(i))){
+             hash.put(S.charAt(i), hash.get(S.charAt(i))+1);
+         }else{
+             hash.put(S.charAt(i), 1);
+         }
+       }
+      
+       int result =0;
+       for(int j=0; j<J.length();j++){
+           if(hash.containsKey(J.charAt(j))){
+               result = result+ hash.get(J.charAt(j));
+           }
+       }
+        
+        
+        return result;
+    }
+}
+
+
+Solution -2 :: 
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        int result =0;     
+        for(int i=0;i<S.length();i++){
+          if(J.indexOf(S.charAt(i))>=0)
+              result = result+1; 
+        }                
+        return result;    
+    }   
+}
+
+Time cOmplexity is : O(S*J) , where S is length of Stones and J is the length of Jewels 
