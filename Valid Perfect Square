@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPerfectSquare(int num) {
+     boolean result = false;
+     if(num==1 || num ==4 || num==9){return true;}   
+     for(int i=1;2*i<=num/2;i++){
+      if(i*i==num){
+        return true;  
+      }   
+     }
+     return result;    
+    }
+}
+
+Time Complexity is O(logN) as we are continuously dividing by  2 . 
+Space compalexity is O(1)
