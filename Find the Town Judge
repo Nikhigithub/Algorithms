@@ -1,0 +1,36 @@
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+      if( (trust.length==0 && N==1)){
+          return N;
+      } 
+        
+      int result=-1; 
+      HashMap<Integer, ArrayList<Integer>> hash = new HashMap<Integer, ArrayList<Integer>>();
+      HashSet<Integer> set = new HashSet<Integer>();
+        
+      for(int i=0;i<trust.length;i++){  
+        if(!set.contains(trust[i][0])){
+            set.add(trust[i][0]);
+        }  
+        if(hash.containsKey(trust[i][1])){
+          ArrayList arr1 =hash.get(trust[i][1]);
+          arr1.add(trust[i][0]);  
+          hash.put(trust[i][1], arr1);  
+        }else{
+            ArrayList<Integer> arr2 = new ArrayList<Integer>();
+            arr2.add(trust[i][0]);
+            hash.put(trust[i][1],arr2);
+        }  
+      }
+        
+      for(Map.Entry<Integer, ArrayList<Integer>> map : hash.entrySet()){
+          int key = map.getKey();
+          ArrayList<Integer> arr3 = map.getValue();
+          if(!arr3.contains(key) && arr3.size()==N-1 && !set.contains(key)){
+             return key; 
+          }
+      }  
+        
+      return result;  
+    }
+}
