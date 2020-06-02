@@ -108,3 +108,93 @@ class Solution {
       return result;  
     }
 }
+
+
+
+Approach 3:: Two stacks 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+      ArrayList<Integer> result = new ArrayList<Integer>();  
+      Stack<TreeNode> stk1 = new Stack<TreeNode>(); 
+      Stack<Integer>  stk2 = new Stack<Integer>();
+      if(root!=null){
+      stk1.push(root);
+      }
+      
+      while(!stk1.isEmpty()){
+        TreeNode temp = stk1.pop();
+        stk2.push(temp.val);
+          
+        if(temp.left!=null){
+          stk1.push(temp.left);  
+        }
+        if(temp.right!=null){
+          stk1.push(temp.right);  
+        }  
+      } 
+      
+        System.out.println(stk2.size());
+      for(int i=stk2.size()-1;i>=0;i--){
+        result.add(stk2.pop());  
+      }  
+        return result;
+    }
+}
+
+
+
+Approah four : using two stacks
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+      LinkedList<Integer> result = new LinkedList<Integer>();  
+      LinkedList<TreeNode> stk1 = new LinkedList<>();
+     // Stack<Integer>  stk2 = new Stack<Integer>();
+      if(root!=null){
+      stk1.push(root);
+      }
+      
+      while(!stk1.isEmpty()){
+        TreeNode temp = stk1.pollLast();
+        result.addFirst(temp.val);
+          
+        if(temp.left!=null){
+          stk1.add(temp.left);  
+        }
+        if(temp.right!=null){
+          stk1.add(temp.right);  
+        }  
+      } 
+      
+      return result;
+    }
+}
