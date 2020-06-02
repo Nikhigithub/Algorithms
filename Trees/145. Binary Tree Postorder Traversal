@@ -47,6 +47,7 @@ class Solution {
 
 
 Time Complexity: O(N) , N being the nodes in the tree. 
+Space Complexity is : O(h) WHERE h is the height of the tree
 Approach : Do the preorder traversal and just reverse the array. 
 
 
