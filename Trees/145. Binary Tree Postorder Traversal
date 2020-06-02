@@ -48,3 +48,63 @@ class Solution {
 
 Time Complexity: O(N) , N being the nodes in the tree. 
 Approach : Do the preorder traversal and just reverse the array. 
+
+
+
+
+Approach 2: using one stack 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+      ArrayList<Integer> result = new ArrayList<Integer>();  
+      Stack<TreeNode> stk = new Stack<TreeNode>();  
+        
+      if(root!=null){
+        stk.push(root);  
+      }else{
+        return result;
+      }  
+
+      TreeNode curr = root;  
+      while(!stk.isEmpty()){
+        if(curr!=null ){
+            if(curr!=root){
+            stk.push(curr);
+            }
+            curr= curr.left;
+        }
+        else{
+          TreeNode temp = stk.peek().right;
+          if(temp==null){
+            temp = stk.pop();
+            result.add(temp.val);  
+          
+          while(!stk.isEmpty() && temp==stk.peek().right){
+              temp = stk.pop();
+              result.add(temp.val); 
+          }
+          }else{
+              curr=temp; 
+          } 
+            
+        }  
+          
+      }  
+    
+      return result;  
+    }
+}
