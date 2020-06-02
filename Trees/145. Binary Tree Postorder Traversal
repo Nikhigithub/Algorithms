@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+      ArrayList<Integer> arr = new ArrayList<Integer>();
+      ArrayList<Integer> result = new ArrayList<Integer>();  
+      Stack<TreeNode> stk = new Stack<TreeNode>();  
+        
+      if(root!=null){
+        stk.push(root);  
+      }else{
+          return arr;
+      }  
+      
+      TreeNode prev = null;  
+        
+      while(!stk.isEmpty()){
+        TreeNode curr= stk.pop();
+        if(curr.left!=null){
+          stk.push(curr.left);
+        } 
+        if(curr.right!=null){
+          stk.push(curr.right);
+        }
+        arr.add(curr.val);      
+      }  
+        
+      for(int i=arr.size()-1;i>=0;i--){
+          result.add(arr.get(i));
+      }
+      return result;  
+    }
+}
+
+
+Time Complexity: O(N) , N being the nodes in the tree. 
+Approach : Do the preorder traversal and just reverse the array. 
