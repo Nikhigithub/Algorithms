@@ -1,0 +1,78 @@
+class Solution {
+    public int findPairs(int[] nums, int k) {
+     int len=0;
+     if(k<0){
+      return len;   
+     }else if(k!=0){   
+     ArrayList<Integer> set  = new ArrayList<Integer>();
+     for(int i=0;i<nums.length;i++){
+       if(!set.contains(nums[i])){
+          set.add(nums[i]); 
+       }   
+     }
+      for(int j=0;j<set.size();j++){
+       if(set.contains(set.get(j)+k)){
+           len++;
+       }   
+      } }else{
+       HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+       for(int i=0;i<nums.length;i++){
+         if(!hash.containsKey(nums[i])){
+             hash.put(nums[i], 1);
+         }else{
+             hash.put(nums[i], hash.get(nums[i])+1);
+         }  
+       }
+       for(Map.Entry<Integer, Integer> map: hash.entrySet()){
+         if(map.getValue()>=2){
+           len++;  
+         }  
+       }  
+         
+     } 
+        
+     return len;   
+    }
+}
+
+
+
+
+
+
+
+//Solution-2 : using only hasmap
+class Solution {
+    public int findPairs(int[] nums, int k) {
+     int len=0;
+     if(k<0){
+      return len;   
+     }  
+       HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+       for(int i=0;i<nums.length;i++){
+         if(!hash.containsKey(nums[i])){
+             hash.put(nums[i], 1);
+         }else{
+             hash.put(nums[i], hash.get(nums[i])+1);
+         }  
+       }   
+      
+     if(k!=0){
+         for(Map.Entry<Integer, Integer> map: hash.entrySet()){
+          int key = map.getKey()+k;   
+         if(hash.containsKey(key)){
+           len++;  
+         }  
+       }   
+      }else{
+        for(Map.Entry<Integer, Integer> map: hash.entrySet()){
+         if(map.getValue()>=2){
+           len++;  
+         }  
+       } 
+      }  
+      
+        
+     return len;   
+    }
+}
