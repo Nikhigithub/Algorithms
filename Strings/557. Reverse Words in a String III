@@ -1,0 +1,96 @@
+class Solution {
+    public String reverseWords(String s) {
+      if(s.isEmpty()){
+          return s;
+      }  
+        
+     StringBuilder str = new StringBuilder();
+     int count =0;
+     int start =0;   
+        
+     for(int i=0;i<s.length();i++){  
+      if(s.charAt(i) != ' '){
+        count++;  
+      } else{  
+      for(int j=count;j>=start;j--){
+       str.append(s.charAt(j));   
+      }
+       count = i+1;
+       start = i+1;  
+     }
+     }
+ 
+     if(s.charAt(s.length()-1)!=' '){
+       str.append(' ');  
+       for(int j=count-1;j>=start;j--){
+       str.append(s.charAt(j));   
+      }  
+     }   
+        
+     return str.toString().trim();   
+    }
+}
+
+
+
+
+
+//Solution 2: where I add extra space at the end of the string if there is not one as the earlier solution we are duplicating the logic for tit 
+class Solution {
+    public String reverseWords(String s) {
+      if(s.isEmpty()){
+          return s;
+      }  
+     
+     if(s.charAt(s.length()-1) != ' '){
+       s= s+" ";  
+     }   
+     StringBuilder str = new StringBuilder();
+     int count =0;
+     int start =0;   
+        
+     for(int i=0;i<s.length();i++){  
+      if(s.charAt(i) != ' '){
+        count++;  
+      } else{  
+      for(int j=count;j>=start;j--){
+       str.append(s.charAt(j));   
+      }
+       count = i+1;
+       start = i+1;  
+     }
+     }
+ 
+    /* if(s.charAt(s.length()-1)!=' '){
+       str.append(' ');  
+       for(int j=count-1;j>=start;j--){
+       str.append(s.charAt(j));   
+      }  
+     }*/   
+        
+     return str.toString().trim();   
+    }
+}
+
+
+//Solution 3 :using split method
+class Solution {
+    public String reverseWords(String s) {
+      if(s.isEmpty()){
+          return s;
+      }
+     StringBuilder str1= new StringBuilder();   
+     String[] str = s.split(" ");
+     for(String word: str){
+       StringBuilder temp = new StringBuilder(word);  
+       str1.append(temp.reverse()).append(" ");        
+     }   
+            
+     return str1.toString().trim();   
+    }
+}
+
+
+
+
+
