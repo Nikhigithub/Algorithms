@@ -21,3 +21,7 @@ class Solution {
      return str.reverse().toString();   
     }
 }
+
+
+Time complexity is : O(max(n1, n2)) , where n1 and n2 are the length of two strings. Here we do maximum of (n1, n2) iterations
+Space Complexity is : O(max(n1,n2)) because the new string is max(n1,n2)+1
