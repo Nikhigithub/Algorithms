@@ -1,0 +1,57 @@
+class Solution {
+    public String breakPalindrome(String palindrome) {
+      StringBuilder str = new StringBuilder();
+      if(palindrome  == "" || (palindrome.length()==1 )){  
+        return "";  
+      }  
+      int i=0;
+      while(i < palindrome.length() && palindrome.charAt(i) == 'a' ){
+        str.append(palindrome.charAt(i));
+        i++;
+      }
+      if(i==palindrome.length()){
+        StringBuilder newstr = new StringBuilder();
+           for(int k=0;k<palindrome.length()-1;k++){
+             newstr.append(palindrome.charAt(k));  
+           }
+        char temp = palindrome.charAt(palindrome.length()-1);
+        int newtemp = temp+1;
+        newstr.append((char)newtemp);
+        return newstr.toString(); 
+      }else{
+        str.append('a');
+        for(int j=i+1;j<palindrome.length();j++){
+            str.append(palindrome.charAt(j));
+        }}
+       
+      return ispalindrome(str.toString())? newstring(palindrome) : str.toString();
+    }
+    
+ public String newstring(String pal){
+   StringBuilder str2 = new StringBuilder();  
+   System.out.println("second");  
+   char temp = pal.charAt(pal.length()-1);
+   int newtemp = temp + 1 ;    
+   for(int l=0;l<pal.length()-1;l++){
+     str2.append(pal.charAt(l));  
+   }  
+   str2.append((char)newtemp);  
+   return str2.toString();
+ }  
+    
+ public boolean ispalindrome(String str1){
+   int len = str1.length()-1;
+   int k=0;  
+     
+   while(k<=len/2){
+    if(str1.charAt(k)== str1.charAt(len)){
+      k++;
+      len--;  
+    }else{
+      return false;  
+    }   
+   }
+     
+    return true; 
+ }   
+}
