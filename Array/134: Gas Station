@@ -1,0 +1,17 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+      int result =0;
+      int tank =0;
+      int currgas  =0;
+      for(int i=0;i<cost.length;++i){
+         tank =tank + gas[i]-cost[i];
+         currgas = currgas + gas[i]-cost[i];
+         if(currgas < 0){
+           result = i+1;
+           currgas =0;  
+         } 
+      }  
+      System.out.println(tank+"]]]]"+result);  
+      return tank>=0?result:-1;  
+    }
+}
