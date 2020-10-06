@@ -1,0 +1,35 @@
+class Solution {
+    public int bitwiseComplement(int N) {
+      if(N==0){
+       return 1 ;  
+      }  
+      StringBuilder str = new StringBuilder();
+      int rem =0;  
+      while(N>0){
+        rem = N%2;
+        N =N/2;
+        str.append(rem);  
+      }
+        
+      String strg = str.reverse().toString();
+      StringBuilder compl = new StringBuilder();  
+      for(int i=0;i<strg.length();i++){
+       if(strg.charAt(i)=='0'){
+         compl.append('1');
+       }else{
+         compl.append('0');  
+       }   
+      }
+        
+      int finalres =0;
+      int count =0;  
+      for(int i=compl.length()-1;i>0;i--){
+        int pow = (int)Math.pow(2,count); 
+        int value = compl.charAt(i)-48;  
+        finalres = finalres+pow*value;
+        count++;  
+      }  
+        
+      return finalres;  
+    }
+}
